@@ -5,7 +5,9 @@ I saw someone have "buy me a coffee" on their blog and it inspired me to make a 
 
 ***I've only tested this MetaMask. Might add error handling later when a plugin is not present for getAccount and ethereum.request***
 
-***Does not work on mobile***
+***Does not work on mobile browsers***
+
+***Does work on mobile through MetaMask browser***
 
 ## Values, Options, Parameters
 Value, Gas, Gas Price, and other options are hex encoded. Values are done from Wei to Ether. 1 Ether = 1,000,000,000,000,000,000 Wei. This is done for better accuracy. 
