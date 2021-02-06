@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="A one page link page">
+  <meta name="author" content="Kai Asuncion">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kai Asuncion - Links</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 100%;
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #4158D0;
+      background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    }
+    .container {
+      margin: 4rem 1rem;
+      padding: 2rem 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 2rem black;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      max-width: 800px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    .avatar {
+      width: 80%;
+      max-width: 500px;
+      min-width: 200px;
+      margin-bottom: 1rem;
+      border-radius: 100%;
+      box-shadow: 0 0 0.5rem black;
+    }
+    .bio {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 0.25rem;
+      color: white;
+      box-shadow: 0 0 0.25rem black;
+    }
+    .link-container {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 600px;
+    }
+    .link-container a {
+      display: grid;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      padding: 2rem 2rem;
+      margin: 2rem auto;
+      border-radius: 0.5rem;
+      border: none;
+      width: 100%;
+      font-size: 1.5rem;
+      transition: 0.3s ease-in-out;
+      text-decoration: none;
+      box-shadow: 0 0 0.25rem black;
+    }
+    .link-container a:hover {
+      background-color: hotpink;
+      color: black;
+    }
+    .link-container img {
+      height: 3rem;
+    }
+    button {
+      border: none;
+    }
+    button:hover {
+      cursor: pointer;
+      background-color: hotpink;
+      color: black;
+    }
+    button:focus {
+      outline: none;
+    }
+    .bttn {
+      padding: 1rem 2rem;
+      box-shadow: 0 0 0.25rem black;
+      transition: 0.3s ease-in-out;
+      background: none;
+      margin: 0;
+    }
+    .ether-container {
+      width: 100%;
+    }
+    .enable-ether {
+      background-color: #14044dbb;
+      color: white;
+      width: 60%;
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
+    .send-ether {
+      background-color: #716b94bb;
+      color: white;
+      width: 40%;
+      border-radius: 0 0.25rem 0.25rem 0;
+    }
+    @media only screen and (min-width: 800px) {
+      .link-container a {
+        width: 25%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <img class="avatar" src="/assets/classic-kai.png" alt="logo">
+  <p class="bio">Developer && Photographer && Planted Tank Hobbyist</p>
+  <div class="link-container">
+    <a class="icon" title="@NotComputerSavy" href="https://twitter.com/NotComputerSavy"><img src="/assets/icons/407-twitter.svg" alt="twitter"></a>
+    <a class="icon" title="github.com/toxicmuffin" href="https://github.com/toxicmuffin"><img src="/assets/icons/433-github.svg" alt="github"></a>
+  </div>
+<div class="ether-container">
+  <button class="enable-ether bttn" title="Enable a wallet for transactions dealing with Ether">Enable Ethereum</button><button class="send-ether bttn" title="The price is set to a luxery priced Starbucks coffee">Send Ether</button>
+</div>
+</div>
+<script>
+const ethereumButton = document.querySelector('.enable-ether');
+const sendEthButton = document.querySelector('.send-ether');
+
+let accounts = [];
+
+//Sending Ethereum to an address
+// value and other parameters should be hexcode
+// value, gas, so on... use wei to ether
+// 1 ether, 1,000,000,000,000,000,000 wei
+sendEthButton.addEventListener('click', () => {
+  ethereum
+    .request({
+      method: 'eth_sendTransaction',
+      params: [
+        {
+          from: accounts[0],
+          to: '0xE825C4c193AcFfb431214eFc92ae9C083ebC46EC',
+          value: '0xeebe0b40e8000',
+        },
+      ],
+    })
+    .then((txHash) => console.log(txHash))
+    .catch((error) => console.error);
+});
+
+ethereumButton.addEventListener('click', () => {
+  getAccount();
+});
+
+async function getAccount() {
+  accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+}
+</script>
+</body>
+</html>
